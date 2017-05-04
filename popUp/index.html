@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>pop Up</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding-top: 0;
+		}
+		#mask{
+			background-color: #000;
+			opacity: 0.75;
+			filter: alpha(opacity=75);
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1000;
+		}
+		#login{
+			position: fixed;
+			left: 30%;
+			top: 30%;
+			z-index: 1001;
+		}
+		.loginCon{
+			width: 670px;
+			height: 380px;
+			background-color: #ccc;
+			position: relative;
+		}
+		#close{
+			width: 30px;
+			height: 30px;
+			background-color: red;
+			cursor: pointer;
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBtn=document.getElementById("btnLogin");
+			oBtn.onclick=function(){
+			    //获取页面的高度和宽度
+			  	var sHeight=document.documentElement.scrollHeight;
+			  	var sWidth=document.documentElement.scrollWidth;
+			  	//可视区域的高度和宽度
+			  	var wHeight=document.documentElement.clientHeight;
+			  	var wWidth=document.documentElement.clientWidth;
+  	
+			  	var oMask=document.createElement("div");
+			  		oMask.id="mask";
+			  		oMask.style.height=sHeight+"px";
+			  		oMask.style.width =sWidth+"px";
+			  	document.body.appendChild(oMask);
+			  	var oLogin=document.createElement("div");
+			  		oLogin.id="login";
+			  		oLogin.innerHTML="<div class='loginCon'><div id='close'></div></div>";
+			  		document.body.appendChild(oLogin);
+			  	//删除登陆框和遮罩
+			  	var oClose=document.getElementById("close");
+			  		oClose.onclick=function(){
+			  			document.body.removeChild(oMask);
+			  			document.body.removeChild(oLogin);
+			  		}
+			  	}
+		}
+	</script>
+</head>
+<body>
+<div style="width: 100%;height: 1700px;background-color: pink;">
+	<div id="btnLogin" style="width: 30px;height: 30px;background-color: blue;"></div>
+</div>
+<!--<div id="mask"></div>
+	<div id="login">
+		<div class="loginCon"></div>
+		<div class="close"></div>
+	</div>-->
+</body>
+</html>
