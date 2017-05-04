@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+	<title>demo</title>
+	<script type="text/javascript">
+		window.onload = initSelect;
+        
+        function initSelect(){
+            var yearSel = document.getElementById('year');
+            var monthSel = document.getElementById('month');
+            
+            initYear(); //设置年份默认选中第一个选项
+            initMonth(); //设置月份默认选中第一个选项
+            initDate(); //设置日期默认选中第一个选项
+            yearSel.onchange = yearFun; //当年份被选择的时候调整月份
+            monthSel.onchange = monthFun; //当月份被选择的时候调整日期
+            
+        }
+        
+        function yearFun(){
+            if( this.options.selectedIndex === 0 ){ //如果选中第一个，把月，日设置为也选中第一个
+                initMonth();
+                initDate();
+            }else{ //如果选中年份，填充月份
+                popMonth();
+            }
+        }
+        
+        function monthFun(){
+            var dateArr = [31,28,31,30,31,30,31,31,30,31,30,31]; //储存不同月份天数的数组
+            var thisValue = parseInt(this.options[this.options.selectedIndex].value); //获取当前选中的选项的值并转为数字
+            
+            if( this.options.selectedIndex === 0 ){ //如果选中第一个选项，初始化日期
+                initDate();
+            }else{ //如果选中其他选项，根据选项加载不同日期
+                document.getElementById('date').options.length = 1;
+                var isLeap = checkLeap(); //要使用函数返回值，可以保存为变量，或直接使用
+                if ( isLeap ){
+                    dateArr[1] = 29;
+                }else{
+                    dateArr[1] = 28;
+                }
+                for( var i = 0; i < dateArr[thisValue-1]; i++ ){ //根据选中选项的value值查找date数组中对应的天数值，循环出来
+                    document.getElementById('date').options[i+1] = new Option( i+1 ); //因为第一个选项是横线，所以要+1，从第二个开始
+                };
+            }
+        }
+        
+        function popMonth(){
+            initDate(); //填充月份的时候初始化日期
+            for( var i = 0; i < 12; i++ ){
+                document.getElementById('month').options[i+1] = new Option(i+1,i+1); //填充月份，设置内容和值
+            }
+        }
+        
+        function checkLeap(){ //判断选中年份是否为闰年
+            var yearSel = document.getElementById('year');
+            var thisYearValue = parseInt(yearSel.options[yearSel.options.selectedIndex].value); //获取当前选中年份的值并转为数字
+            if( (thisYearValue % 4  === 0 && thisYearValue % 100 !== 0) || thisYearValue % 400 === 0 ){ //闰年：能被4整除的同时不能被100整除，或者能被400整除，只要满足两者之一就是闰年
+                return true;
+            }
+            return false;
+        }
+        
+        function initYear(){
+            document.getElementById('year').options.selectedIndex = 0; //设置年份选中第一个选项
+        }
+        
+        function initMonth(){
+            document.getElementById('month').options.selectedIndex = 0; //设置月份选中第一个选项
+            document.getElementById('month').options.length = 1; //只保留第一个选项
+        }
+        
+        function initDate(){
+            document.getElementById('date').options.selectedIndex = 0; //设置日期选中第一个选项
+            document.getElementById('date').options.length = 1; //只保留第一个选项
+        }
+	</script>
+</head>
+<body>
+   <select name="year" id="year">
+        <option value="0">--</option>
+        <option value="1999">1999</option>
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+    </select>年
+    <select name="month" id="month">
+        <option value="0">--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>月
+    <select name="date" id="date">
+        <option value="0">--</option>
+    </select>日
+</body>
+</html>
