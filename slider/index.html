@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+	<title>Slide</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--width - viewport的宽度 height - viewport的高度
+      initial-scale - 初始的缩放比例
+      minimum-scale - 允许用户缩放到的最小比例
+      maximum-scale - 允许用户缩放到的最大比例
+      user-scalable - 用户是否可以手动缩放
+  	-->
+</head>
+<body>
+	<!--父容器存放所有内容-->
+	<div class="container">
+		<!--子容器list存放图片-->
+		<div class="list" style="left:-1652px">	
+			<img src="img/banner3.jpg" alt="3"/>
+			<img src="img/banner1.jpg" alt="1"/>
+			<img src="img/banner2.jpg" alt="2"/>
+			<img src="img/banner3.jpg" alt="3"/>
+			<img src="img/banner1.jpg" alt="1"/>
+		</div>
+
+		<div class="buttons">
+			<span class="btn-1" id="on" index="1"></span>
+			<span class="btn-2" index="2"></span>
+			<span class="btn-3" index="3"></span>
+		</div>
+		<span class="prev">&lt;</span>
+		<span class="next">&gt;</span>
+	</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
