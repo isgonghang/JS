@@ -62,7 +62,7 @@ window.onload=function(){
 	}
 	//鼠标移入和移出停止和继续滚动
 	container.onmouseover=stop;
-    container.onmouseout=play;
+        container.onmouseout=play;
 	play();
 
 	//点击小圆点直接切换到相关图片
