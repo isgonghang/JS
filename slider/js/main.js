@@ -1,11 +1,11 @@
 
 window.onload=function(){
-	var list=document.getElementsByClassName("list")[0];
-	var prev=document.getElementsByClassName("prev")[0];
-	var next=document.getElementsByClassName("next")[0];
-	var container=document.getElementsByClassName("container")[0];
+    var list=document.getElementsByClassName("list")[0];
+    var prev=document.getElementsByClassName("prev")[0];
+    var next=document.getElementsByClassName("next")[0];
+    var container=document.getElementsByClassName("container")[0];
 	function animate(offset){
-		//获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
+	//获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
         //且style.left获取的是字符串，需要用parseInt()取整转化为数字。
 		var oLeft=parseInt(list.style.left)+offset;
 		list.style.left=oLeft+"px";
@@ -18,7 +18,7 @@ window.onload=function(){
 		}
 	}
 	//前后箭头切换图片
-	var buttons=document.getElementsByClassName("buttons")[0].getElementsByTagName('span');
+    var buttons=document.getElementsByClassName("buttons")[0].getElementsByTagName('span');
     var index=1;
 
     function buttonsShow() {
